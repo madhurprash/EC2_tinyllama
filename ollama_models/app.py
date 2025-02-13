@@ -15,6 +15,17 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 
+# Define the environment variables
+MODEL_NAME = os.getenv('OLLAMA_MODEL_NAME', 'tinyllama:1.1b')
+OLLAMA_ENDPOINT = os.getenv('OLLAMA_API_ENDPOINT', 'http://localhost:11434/api/generate')
+AUTH_TOKEN = os.getenv('OLLAMA_AUTH_TOKEN')
+
+DEFAULT_GENERATION_CONFIG = {
+    'temperature': float(os.getenv('OLLAMA_TEMPERATURE', '0.3')),
+    'top_p': float(os.getenv('OLLAMA_TOP_P', '0.3'))
+}
+
+
 def verify_auth_token(request_token):
     if not hmac.compare_digest(request_token, AUTH_TOKEN):
         abort(401, description="Invalid authentication token")
