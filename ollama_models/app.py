@@ -2,7 +2,6 @@ import os
 import json
 import time
 import hmac
-import globals
 import logging
 import hashlib
 import requests
