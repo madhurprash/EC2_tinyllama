@@ -22,6 +22,7 @@ DEFAULT_GENERATION_CONFIG = {
     'temperature': float(os.getenv('OLLAMA_TEMPERATURE', '0.3')),
     'top_p': float(os.getenv('OLLAMA_TOP_P', '0.3'))
 }
+print(f"Using: MODEL_NAME: {MODEL_NAME}, OLLAMA_ENDPOINT: {OLLAMA_ENDPOINT}, AUTH_TOKEN: {AUTH_TOKEN}, DEFAULT_GENERATION_CONFIG: {DEFAULT_GENERATION_CONFIG}")
 
 
 def verify_auth_token(request_token):
@@ -83,7 +84,7 @@ def predict():
             "object": "text_completion",
             "created": int(time.time()),
             "model": MODEL_NAME,
-            "choices": [
+            "completions": [
                 {
                     "text": result['response'],
                     "index": 0,
