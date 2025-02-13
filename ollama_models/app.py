@@ -5,7 +5,6 @@ import hmac
 import logging
 import hashlib
 import requests
-from globals import *
 from flask import Flask, request, jsonify, abort
 
 # Configure logging
